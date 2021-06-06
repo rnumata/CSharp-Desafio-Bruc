@@ -1,0 +1,51 @@
+﻿
+@model List<Cliente>
+@{
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+
+   <div>
+       <a asp-action="Listar" asp-controller="Cliente" asp-route-id="1">Ordenar por Id</a>
+       <a asp-action="Listar" asp-controller="Cliente" asp-route-id="2" >Ordenar por Nome</a>
+   </div>
+
+   <table>
+       <thead>
+           <tr>
+               <th>Id</th>
+               <th>Nome</th>
+               <th>Email</th>
+               <th>Telefone</th>
+               <th>Cidade</th>
+               <th>Estado</th>
+               <th>Data Nasc</th>
+           </tr>
+       </thead>
+       <tbody>
+           @foreach (Cliente cliente in Model)
+           {
+           <tr>
+               <td>@cliente.Id</td>
+               <td>@cliente.Nome</td>
+               <td>@cliente.Email.</td>
+               <td>@cliente.Telefone.</td>
+               <td>@cliente.Cidade.</td>
+               <td>@cliente.Estado</td>
+               <td>@cliente.DataNascimento</td>
+               <td><a asp-action="Remover" asp-controller="Cliente" asp-route-id="@cliente.Id">Remover</a></td>
+               <td><a asp-action="Editar" asp-controller="Cliente" asp-route-id="@cliente.Id">Editar</a></td>
+           </tr>
+           }
+       </tbody>
+   </table>
+
+
+</body>
+
+</html>

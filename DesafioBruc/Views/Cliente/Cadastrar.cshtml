@@ -1,0 +1,41 @@
+﻿
+@model Cliente
+@{
+}
+
+
+    <form asp-action="Cadastrar" asp-controller="Cliente" method="post">
+        <div asp-validation-summary="ModelOnly"></div>
+        <div class="form-group">
+            <label asp-for="Nome">Nome</label>
+            <input class="form-control" asp-for="Nome" type="text" />
+            <span asp-validation-for="Nome"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Email">Email</label>
+            <input class="form-control" asp-for="Email" type="email" />
+            <span asp-validation-for="Email"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Telefone">Telefone</label>
+            <input asp-for="Telefone" type="text" class="form-control sp_celphones" placeholder="(12) 31231-2312" >
+            <span asp-validation-for="Telefone"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Cidade">Cidade</label>
+            <input class="form-control" asp-for="Cidade" type="text" />
+            <span asp-validation-for="Cidade"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Estado">Estado</label>
+            <input class="form-control" asp-for="Estado" type="text" />
+            <span asp-validation-for="Estado"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="DataNascimento">Data Nas</label>
+            <input class="form-control" asp-for="DataNascimento" type="date" />
+            <span asp-validation-for="DataNascimento"></span>
+        </div>
+        <input type="submit" value="Cadastrar" class="btn btn-primary"/>
+    </form>
+

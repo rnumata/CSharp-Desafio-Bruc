@@ -1,6 +1,6 @@
 ### __Title__ 
 
-application developed with ASP.Net Core MVC technology
+Bruc Challenge
 
 ### __Description__
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DesafioBruc.DAL;
 using DesafioBruc.Models;
+using DesafioBruc.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,7 +31,11 @@ namespace DesafioBruc
             services.AddScoped<ClienteDAO>();
             services.AddDbContext<Context>(options => options.UseNpgsql(Configuration.GetConnectionString("Connection")));
 
-     
+            services.Configure<EmailSettings>(Configuration.GetSection("EmailSettings"));
+            services.AddTransient<IEmailSender, AuthMessageSender>();
+            services.AddMvc();
+
+
             services.AddControllersWithViews();
         }
 

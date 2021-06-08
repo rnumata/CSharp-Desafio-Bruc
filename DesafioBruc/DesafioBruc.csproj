@@ -21,5 +21,8 @@
   <ItemGroup>
     <Folder Include="DAL\" />
     <Folder Include="Views\Cliente\" />
+    <Folder Include="Services\" />
+    <Folder Include="Views\TesteEmail\" />
+    <Folder Include="wwwroot\images\" />
   </ItemGroup>
 </Project>

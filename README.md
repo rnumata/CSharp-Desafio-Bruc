@@ -4,8 +4,7 @@ Bruc Challenge
 
 ### __Description__
 
-</br>
-</br>
+This Web App was developed according to the requirements of Bruc Challenge to apply for a Dev job.
 
 ### __Technologies Used__
 
@@ -17,4 +16,5 @@ DB Postgres
 ### __Learnings__
 
 The development of an application with the technology ASP.Net Core applying the standard MVC</br>
-Configuration the dependencies of the provider for Entity Framework (Code First) and the database Postgres
+Set up the dependencies of the provider for Entity Framework (Code First) and the database Postgres</br>
+Set up the outgoing SMTP server, smtp.gmail.com

@@ -29,6 +29,7 @@ namespace DesafioBruc
         {
 
             services.AddScoped<ClienteDAO>();
+            services.AddScoped<EmailModel>();
             services.AddDbContext<Context>(options => options.UseNpgsql(Configuration.GetConnectionString("Connection")));
 
             services.Configure<EmailSettings>(Configuration.GetSection("EmailSettings"));

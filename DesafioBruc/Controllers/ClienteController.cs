@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Threading.Tasks;
 using DesafioBruc.DAL;
 using DesafioBruc.Models;
+using DesafioBruc.Services;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DesafioBruc.Controllers
@@ -9,9 +12,17 @@ namespace DesafioBruc.Controllers
     {
         private readonly ClienteDAO _clienteDAO;
 
-        public ClienteController(ClienteDAO clienteDAO)
+        private readonly IEmailSender _emailSender;
+
+        private readonly EmailModel _emailModel;
+
+        public ClienteController(ClienteDAO clienteDAO, IEmailSender emailSender, IWebHostEnvironment env, EmailModel emailModel)
         {
             _clienteDAO = clienteDAO;
+
+            _emailSender = emailSender;
+
+            _emailModel = emailModel;
         }
 
 
@@ -29,6 +40,12 @@ namespace DesafioBruc.Controllers
 
                 if (_clienteDAO.Cadastrar(cliente))
                 {
+                    _emailModel.Assunto = "TesteNoCliente";
+                    _emailModel.Destino = "regis.numata@gmail.com";
+                    _emailModel.Mensagem = "Novo cliente cadastrado : " + cliente.Nome + " email : " + cliente.Email;
+
+                    TesteEnvioEmail(_emailModel.Destino, _emailModel.Assunto, _emailModel.Mensagem).GetAwaiter();
+
                     return RedirectToAction("Index", "Home");
                 }
                 ModelState.AddModelError("", "Cliente Já Cadastrardo !");
@@ -65,6 +82,20 @@ namespace DesafioBruc.Controllers
         {
             _clienteDAO.Alterar(cliente);
             return RedirectToAction("Listar", "Cliente");
+
+        }
+
+        public async Task TesteEnvioEmail(string email, string assunto, string mensagem)
+        {
+            try
+            {
+                //email destino, assunto do email, mensagem a enviar
+                await _emailSender.SendEmailAsync(email, assunto, mensagem);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
     }

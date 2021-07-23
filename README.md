@@ -5,6 +5,7 @@ Bruc Challenge
 ### __Description__
 
 This Web App was developed according to the requirements of Bruc Challenge to apply for a Dev job.
+Its aim is to perform the four basic operations of persistent storage (CRUD), to provide a list with options to sort by name or Id and send an email to the admin concerning the persistent operation done.
 
 ### __Technologies Used__
 

@@ -16,6 +16,8 @@ namespace DesafioBruc.Controllers
 
         private readonly EmailModel _emailModel;
 
+
+
         public ClienteController(ClienteDAO clienteDAO, IEmailSender emailSender, IWebHostEnvironment env, EmailModel emailModel)
         {
             _clienteDAO = clienteDAO;
@@ -40,10 +42,9 @@ namespace DesafioBruc.Controllers
 
                 if (_clienteDAO.Cadastrar(cliente))
                 {
-                    _emailModel.Assunto = "TesteNoCliente";
+                    _emailModel.Assunto = "Desafio BRUC - Novo Cadastro";
                     _emailModel.Destino = "regis.numata@gmail.com";
-                    _emailModel.Mensagem = "Novo cliente cadastrado : " + cliente.Nome + " email : " + cliente.Email;
-
+                    _emailModel.Mensagem = "Novo cliente cadastrado | Nome : " + cliente.Nome + " | email : " + cliente.Email + " | Telefone : " + cliente.Telefone + " | Cidade : " + cliente.Cidade + " | Estado : " + cliente.Estado + " | Nasc: " + cliente.DataNascimento;
                     TesteEnvioEmail(_emailModel.Destino, _emailModel.Assunto, _emailModel.Mensagem).GetAwaiter();
 
                     return RedirectToAction("Index", "Home");
@@ -67,7 +68,15 @@ namespace DesafioBruc.Controllers
 
         public IActionResult Remover(int id)
         {
+
+            Cliente cliente = _clienteDAO.BuscarPorId(id);
+            _emailModel.Assunto = "Desfaio BRUC - Exclusão de Cadastro";
+            _emailModel.Destino = "regis.numata@gmail.com";
+            _emailModel.Mensagem = "Cadastro Excluído | Nome : " + cliente.Nome + " | email : " + cliente.Email;
+            TesteEnvioEmail(_emailModel.Destino, _emailModel.Assunto, _emailModel.Mensagem).GetAwaiter();
+
             _clienteDAO.Remover(id);
+
             return RedirectToAction("Listar", "Cliente");
         }
 
@@ -80,10 +89,16 @@ namespace DesafioBruc.Controllers
 
         public IActionResult Alterar(Cliente cliente)
         {
+            _emailModel.Assunto = "Desafio BRUC - Cadastro Alterado";
+            _emailModel.Destino = "regis.numata@gmail.com";
+            _emailModel.Mensagem = "Cadastro Alterado | Nome : " + cliente.Nome + " | email : " + cliente.Email + " | Telefone : " + cliente.Telefone + " | Cidade : " + cliente.Cidade + " | Estado : " + cliente.Estado + " | Nasc: " + cliente.DataNascimento;
+            TesteEnvioEmail(_emailModel.Destino, _emailModel.Assunto, _emailModel.Mensagem).GetAwaiter();
+
             _clienteDAO.Alterar(cliente);
             return RedirectToAction("Listar", "Cliente");
 
         }
+
 
         public async Task TesteEnvioEmail(string email, string assunto, string mensagem)
         {

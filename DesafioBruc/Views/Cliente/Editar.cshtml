@@ -10,33 +10,33 @@
 </head>
 <body>
     <form asp-action="Alterar" asp-controller="Cliente" method="post">
-        <div>
-            <label asp-for="Id">Id</label>
-            <input asp-for="Id" type="text" readonly/>
+        <div class="form-group">
+            <label class="form-label" asp-for="Id">Id</label>
+            <input class="form-control" asp-for="Id" type="text" readonly/>
         </div>
-        <div>
-            <label asp-for="Nome">Nome</label>
-            <input asp-for="Nome" type="text" />
+        <div class="form-group">
+            <label class="form-label" asp-for="Nome">Nome</label>
+            <input class="form-control" asp-for="Nome" type="text" />
         </div>
-        <div>
-            <label asp-for="Email">Email</label>
-            <input asp-for="Email" type="text" />
+        <div class="form-group">
+            <label class="form-label" asp-for="Email">Email</label>
+            <input class="form-control" asp-for="Email" type="text" />
         </div>
-        <div>
-            <label asp-for="Telefone">Telefone</label>
-            <input asp-for="Telefone" type="text" />
+        <div class="form-group">
+            <label class="form-label" asp-for="Telefone">Telefone</label>
+            <input class="form-control" asp-for="Telefone" type="text" />
         </div>
-        <div>
-            <label asp-for="Cidade">Cidade</label>
-            <input asp-for="Cidade" type="text" />
+        <div class="form-group">
+            <label class="form-label" asp-for="Cidade">Cidade</label>
+            <input class="form-control" asp-for="Cidade" type="text" />
         </div>
-        <div>
-            <label asp-for="Estado">Estado</label>
-            <input asp-for="Estado" type="text" />
+        <div class="form-group">
+            <label class="form-label" asp-for="Estado">Estado</label>
+            <input class="form-control" asp-for="Estado" type="text" />
         </div>
-        <div>
-            <label asp-for="DataNascimento">Data Nas</label>
-            <input asp-for="DataNascimento" type="datetime" />
+        <div class="form-group">
+            <label class="form-label" asp-for="DataNascimento">Data Nas</label>
+            <input class="form-control" asp-for="DataNascimento" type="datetime" />
         </div>
         <input type="submit" value="Salvar" />
     </form>
